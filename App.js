@@ -180,11 +180,12 @@ const AdvancedType = () => (
 );
 
 //Encapsulating Text Sytles in Reusable Components
-const Bold = ({children}) =>
-    <Text style={boldTextStyles.text}>{children}</Text>;
+const Bold = ({children, style, ...otherProps}) =>
+    <Text style={[boldTextStyles.text, style]}{...otherProps}>{children}</Text>;
 
 Bold.propTypes = {
-    children: React.PropTypes.node.isRequired
+    children: React.PropTypes.node.isRequired,
+    style: Text.propTypes.style
 };
 
 const boldTextStyles = StyleSheet.create({
@@ -209,5 +210,33 @@ const bodyCopyStyles = StyleSheet.create({
     }
 });
 
+const Headline = ({children}) =>
+    <Bold><Text style={headlineStyles.text}>{children}</Text> </Bold>;
+
+Headline.propTypes ={
+    children: React.PropTypes.node.isRequired
+};
+
+const headlineStyles = StyleSheet.create({
+   text: {
+       fontFamily: 'Optima',
+       fontSize: 30,
+       color: '#333'
+   }
+});
+
+const Demo = () => (
+    <View>
+        <Bold onPress={() => console.log('Pressed!')}
+              numberOfLines={2}
+              style={stylesDemo.green}></Bold>
+    </View>
+);
+
+const stylesDemo = StyleSheet.create({
+    green: {
+        color: 'green'
+    }
+});
 
 
