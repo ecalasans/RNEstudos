@@ -1,0 +1,3 @@
+rootProject.name = 'Cap3'
+
+include ':app'
